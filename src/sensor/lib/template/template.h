@@ -1,0 +1,1 @@
+void templateTask(void *pvParameters);
