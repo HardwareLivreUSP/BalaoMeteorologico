@@ -1,1 +1,2 @@
-void templateTask(void *pvParameters);
+void templateSetup(void *pvParameters);
+

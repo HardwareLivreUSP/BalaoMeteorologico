@@ -3,8 +3,16 @@
 #include <freertos/task.h>
 #include "template.h"
 
-void 
-templateTask(void *pvParameters)  
+void
+templateLoop()
 {
-    Serial.println("templateTask");
+    Serial.println("templateLoop");
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+}
+
+void 
+templateSetup(void *pvParameters)  
+{
+    Serial.println("templateSetup");
+    while (true) templateLoop();
 }
