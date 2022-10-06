@@ -1,3 +1,5 @@
+#ifndef _TASKS_H_
+#define _TASKS_H_
 
 #include <template.h>
 
@@ -13,3 +15,5 @@ typedef struct {
 Task tasks[] = {  
     {templateSetup, "template", 4096, 2},
 };
+
+#endif /* _TASKS_H_ */
