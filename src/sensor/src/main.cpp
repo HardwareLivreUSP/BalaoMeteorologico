@@ -12,7 +12,6 @@
 #include <DebugLogger.h>
 #include "tasks.h"
 
-
 void 
 setup() 
 {
