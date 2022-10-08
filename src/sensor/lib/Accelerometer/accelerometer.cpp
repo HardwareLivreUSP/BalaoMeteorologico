@@ -4,11 +4,11 @@
 MPU9250 mpu;
 
 void printSuccess(String str) {
-    Serial.println(REF_MSG_FAIL + str);
+    if(DEBUG_IMU) Serial.println(REF_MSG_FAIL_MPU + str);
 }
 
 void printFail(String str) {
-    Serial.println(REF_MSG_FAIL + str);
+    if(DEBUG_IMU) Serial.println(REF_MSG_FAIL_MPU + str);
 }
 
 
@@ -39,13 +39,13 @@ bool initializeIMU() {
 
     Wire.begin();
     if (!mpu.setup(MPU9250_ADDR, setting)) {  // change to your own address
-            printFail(" Connection failed. Please check your connection I2C");
+            printFail(" Could not find a valid sensor");
             return false;
     }
     else {
-        printSuccess("connection success!");
+        printSuccess("Connection success!");
         configureMPU();
-        if(DEBUG) mpu.verbose(true);
+        if(DEBUG_IMU) mpu.verbose(true);
         return true;
     }
 }
@@ -74,37 +74,37 @@ void calibrateIMU() {
 void updateValuesIMU(void *pvParameters, int sampleInterval) {
     while(1) {
         if (mpu.update()) {
-            realTimeData.YawPitchRoll[0] = mpu.getYaw();
-            realTimeData.YawPitchRoll[1] = mpu.getPitch();
-            realTimeData.YawPitchRoll[2] = mpu.getRoll();
+            realTimeDataIMU.YawPitchRoll[0] = mpu.getYaw();
+            realTimeDataIMU.YawPitchRoll[1] = mpu.getPitch();
+            realTimeDataIMU.YawPitchRoll[2] = mpu.getRoll();
             
-            realTimeData.accel[0] = mpu.getAccX();
-            realTimeData.accel[1] = mpu.getAccY();
-            realTimeData.accel[2] = mpu.getAccZ();
+            realTimeDataIMU.accel[0] = mpu.getAccX();
+            realTimeDataIMU.accel[1] = mpu.getAccY();
+            realTimeDataIMU.accel[2] = mpu.getAccZ();
             
-            realTimeData.gyro[0] = mpu.getGyroX();
-            realTimeData.gyro[1] = mpu.getGyroY();
-            realTimeData.gyro[2] = mpu.getGyroZ();
+            realTimeDataIMU.gyro[0] = mpu.getGyroX();
+            realTimeDataIMU.gyro[1] = mpu.getGyroY();
+            realTimeDataIMU.gyro[2] = mpu.getGyroZ();
 
-            realTimeData.mag[0] = mpu.getMagX();
-            realTimeData.mag[1] = mpu.getMagY();
-            realTimeData.mag[2] = mpu.getMagZ();
+            realTimeDataIMU.mag[0] = mpu.getMagX();
+            realTimeDataIMU.mag[1] = mpu.getMagY();
+            realTimeDataIMU.mag[2] = mpu.getMagZ();
             vTaskDelay(*((int*)pvParameters));
         }
     }
 }
 
 float *getYawPitchRoll() {
-    return realTimeData.YawPitchRoll;
+    return realTimeDataIMU.YawPitchRoll;
 }
 
 float *getAcc() {
-    return realTimeData.accel;
+    return realTimeDataIMU.accel;
 }
 
 float *getGyro() {
-    return realTimeData.gyro;
+    return realTimeDataIMU.gyro;
 }
 float *getMag() {
-    return realTimeData.mag;
+    return realTimeDataIMU.mag;
 }

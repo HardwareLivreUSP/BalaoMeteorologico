@@ -5,7 +5,7 @@
 #include <MPU9250.h>
 #include <eeprom_utils.h>
 
-#define DEBUG 1
+#define DEBUG_IMU 1
 
 #define MPU9250_ADDR 0x68              //Sensor I2C array
 #define EEPROM_BEG_ADDR 0x80           //EEPROM begin for ESP32
@@ -20,10 +20,10 @@ typedef struct _IMUdata {
     float YawPitchRoll[3];
 } IMUdata;
 
-const String REF_MSG_SUCCESS = "[MPU9250] - ";
-const String REF_MSG_FAIL =  "[!MPU9250!] - ";
+const String REF_MSG_SUCCESS_MPU = "[MPU9250] - ";
+const String REF_MSG_FAIL_MPU =  "[!MPU9250!] - ";
 
-IMUdata realTimeData;
+IMUdata realTimeDataIMU;
 
 /*Initialize the I2C bus and try to connect to MPU9250*/
 bool initializeIMU();
