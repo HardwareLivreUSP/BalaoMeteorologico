@@ -8,7 +8,7 @@
 #include <freertos/queue.h>
 #include <freertos/task.h>
 #include "tasks.h"
-
+#include "accelerometer.h"
 void 
 setup() 
 {
