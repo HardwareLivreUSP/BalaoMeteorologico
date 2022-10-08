@@ -11,7 +11,8 @@
 #include <DataLogger.h>
 #include <DebugLogger.h>
 #include "tasks.h"
-
+#include "accelerometer.h"
+#include "temppressure.h"
 void 
 setup() 
 {
