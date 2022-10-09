@@ -11,7 +11,7 @@ typedef struct DebugLogger DebugLogger;
 /**
  * Available operations
  */
-DebugLogger *dbglog_new();                                   
+DebugLogger *dbglog_new(char *name);                                   
 int dbglog_info(DebugLogger *db, char *msg);
 int dbglog_warning(DebugLogger *db, char *msg);
 int dbglog_error(DebugLogger *db, char *msg);
