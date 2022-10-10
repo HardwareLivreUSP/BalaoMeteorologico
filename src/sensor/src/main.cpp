@@ -6,7 +6,6 @@
 #include <freertos/queue.h>
 #include <freertos/task.h>
 #include "tasks.h"
-
 #include "tasks/template/template.h"
 
 Task tasks[] = {  
@@ -38,4 +37,3 @@ loop()
     // TODO: manage tasks
     ;
 }
-

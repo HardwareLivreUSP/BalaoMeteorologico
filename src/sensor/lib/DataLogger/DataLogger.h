@@ -16,7 +16,7 @@ class DataLogger {
   public:
     DataLogger(char *name);
 
-    size_t datalog_write(void *data, size_t dataSize);
+    size_t write(void *data, size_t dataSize);
 };
 
 #endif /* _DATA_LOGGER_H_ */
