@@ -3,46 +3,22 @@
     Implementation of the transmitter.
 *******************************************************************************/
 
-/**
- * Includes & Macros
- */
 #include <Arduino.h>
 #include "Radio.h"
 
-/**
- * Data Structures
- */
-
-
-/**
- * radio_new - initializes
- */
-Radio *
-radio_new()
+Radio::Radio() 
 {
-    Serial.println("// TODO: radio_new");
+    Serial.println("// TODO: Radio::Radio()");
 }
 
-size_t 
-radio_write(Radio *r, void *data, size_t dataSize)
+size_t
+Radio::write(void *data, size_t dataSize)
 {
-    Serial.println("// TODO: radio_write");
+    Serial.println("// TODO: Radio::write");
 }
 
-size_t 
-radio_read(Radio *r, char *buffer)
+size_t
+Radio::read(char *buffer)
 {
-    Serial.println("// TODO: radio_read");
-}
-
-void 
-radio_destroy(Radio *r)
-{
-    Serial.println("// TODO: radio_destroy");
-}
-
-void 
-radio_test(Radio *r)
-{
-    Serial.println("// TODO: radio_test");
+    Serial.println("// TODO: Radio::read");
 }

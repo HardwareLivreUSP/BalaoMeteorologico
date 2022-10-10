@@ -6,14 +6,17 @@
 #ifndef _DATA_LOGGER_H_
 #define _DATA_LOGGER_H_
 
-typedef struct DataLogger DataLogger;
+#define MAX_MODULE_NAME_LEN    23
 
-/**
- * Available operations
- */
-DataLogger *datalog_new();                                   
-size_t datalog_write(DataLogger *dl, void *data, size_t dataSize);
-void datalog_destroy(DataLogger *dl);                         
-int datalog_test(DataLogger *dl);                                    
+class DataLogger {
+  
+  private:
+    char name[MAX_MODULE_NAME_LEN + 1];
+    
+  public:
+    DataLogger(char *name);
+
+    size_t datalog_write(void *data, size_t dataSize);
+};
 
 #endif /* _DATA_LOGGER_H_ */

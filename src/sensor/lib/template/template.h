@@ -1,2 +1,0 @@
-void templateSetup(void *pvParameters);
-

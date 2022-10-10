@@ -4,8 +4,12 @@
 #include <DebugLogger.h>
 #include "template.h"
 
-#define MODULE_NAME     "template"
-DebugLogger dl;
+void 
+templateSetup(void *pvParameters)  
+{
+    Serial.println("templateSetup");
+    while (true) templateLoop();
+}
 
 void
 templateLoop()
@@ -14,10 +18,3 @@ templateLoop()
     vTaskDelay(500 / portTICK_PERIOD_MS);
 }
 
-void 
-templateSetup(void *pvParameters)  
-{
-    Serial.println("templateSetup");
-    dbglog_init(&dl, MODULE_NAME);
-    while (true) templateLoop();
-}

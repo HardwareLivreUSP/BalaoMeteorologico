@@ -3,39 +3,17 @@
     Implementation of the logger.
 *******************************************************************************/
 
-/**
- * Includes & Macros
- */
 #include <Arduino.h>
 #include "DataLogger.h"
 
-/**
- * Data Structures
- */
-
-/**
- * datalog_new - initializes
- */
-DataLogger *
-datalog_new()
+DataLogger::DataLogger(char *name) 
 {
-    Serial.println("// TODO: datalog_new");
+    strncpy(this -> name, name, MAX_MODULE_NAME_LEN);
+    this -> name[MAX_MODULE_NAME_LEN] = '\0';
 }
 
 size_t
-datalog_write(DataLogger *dl, void *data, size_t dataSize)
+DataLogger::write(void *data, size_t dataSize)
 {
-    Serial.println("// TODO: datalog_write");
-}
-
-void 
-datalog_destroy(DataLogger *datalog)
-{
-    Serial.println("// TODO: datalog_destroy");
-}
-
-int 
-datalog_test(DataLogger *datalog)
-{
-    Serial.println("// TODO: datalog_test");
+    Serial.println("// TODO: DataLogger::write");
 }

@@ -3,65 +3,35 @@
     Implementation of the logger.
 *******************************************************************************/
 
-/**
- * Includes & Macros
- */
 #include <Arduino.h>
 #include "DebugLogger.h"
 
-#define MAX_MODULE_NAME_LEN    23
-#define DBGLOG_NAME            "DebugLogger"
-
-/**
- * Data Structures
- */
-struct DebugLogger {
-    char name[MAX_MODULE_NAME_LEN + 1];
+DebugLogger::DebugLogger(char *name) 
+{
+    strncpy(this -> name, name, MAX_MODULE_NAME_LEN);
+    this -> name[MAX_MODULE_NAME_LEN] = '\0';
 }
 
-/**
- * dbglog_new - initializes
- */
-int
-dbglog_new(DebugLogger *dl, char *name)
+void
+DebugLogger::info(char *msg) 
 {
-    // TODO: checks if name is too long
-    if (strlen(name) > MAX_MODULE_NAME_LEN) {
-        // strncpy(dl -> name, name, MAX_MODULE_NAME_LEN);
-        // dl -> name[MAX_MODULE_NAME_LEN] = '\0';
-        // dbglog_error()
-        return -1;
-    }
-    
-    Serial.println("// TODO: dbglog_new");
-}
- 
-int
-dbglog_info(DebugLogger *db, char *msg)
-{
-    Serial.println("// TODO: dbglog_info");
+    Serial.println("// TODO: DebugLogger::info");
 }
 
-int
-dbglog_warning(DebugLogger *db, char *msg)
+void
+DebugLogger::warning(char *msg) 
 {
-    Serial.println("// TODO: dbglog_warning");
+    Serial.println("// TODO: DebugLogger::warning");
 }
 
-int
-dbglog_error(DebugLogger *db, char *msg)
+void
+DebugLogger::error(char *msg) 
 {
-    Serial.println("// TODO: dbglog_error");
+    Serial.println("// TODO: DebugLogger::error");
 }
 
 void 
-dbglog_destroy(DebugLogger *dbglog)
+print(char *msg)
 {
-    Serial.println("// TODO: dbglog_destroy");
-}
-
-int 
-dbglog_test(DebugLogger *dbglog)
-{
-    Serial.println("// TODO: dbglog_test");
+    ;
 }

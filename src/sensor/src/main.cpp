@@ -1,25 +1,24 @@
 /*
  * TODO: comment
- * 
- * 
  */
 
 #include <Arduino.h>
 #include <freertos/queue.h>
 #include <freertos/task.h>
-#include <Radio.h>
-#include <DataLogger.h>
-#include <DebugLogger.h>
 #include "tasks.h"
-#include "accelerometer.h"
-#include "temppressure.h"
+
+#include "tasks/template/template.h"
+
+Task tasks[] = {  
+    { templateSetup, "template", 4096, 2 },
+};
+
 void 
 setup() 
 {
     Serial.begin(115200);
     // TODO: Create Radio and DataLogger mutex
     // TODO: Pass them as arguments to each task
-    Radio *r = radio_new();
     
     uint8_t numberOfTasks = sizeof(tasks) / sizeof(Task);
     for (int i = 0; i < numberOfTasks; i++)
