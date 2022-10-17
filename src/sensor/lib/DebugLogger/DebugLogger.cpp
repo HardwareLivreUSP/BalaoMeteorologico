@@ -5,17 +5,20 @@
 
 #include <Arduino.h>
 #include "DebugLogger.h"
+#include "../../include/sd.h"
 
 #define INFO_PREFIX            "INFO"
 #define WARNING_PREFIX         "WARN"
 #define ERROR_PREFIX           "ERROR"
 
-// TODO: get current time somewhere
+static FileWriter fw;
 
 DebugLogger::DebugLogger(char *name) 
 {
     strncpy(this -> name, name, MAX_MODULE_NAME_LEN);
-    this -> name[MAX_MODULE_NAME_LEN] = '\0';
+    this -> name[strlen(name)] = '\0';
+    snprintf(this -> logPath, MAX_LOG_FILE_LEN, "%s%s", LOG_FOLDER, name);
+    fw.create(this -> logPath);
 }
 
 void
@@ -37,9 +40,15 @@ DebugLogger::error(char *msg)
 }
 
 void 
-DebugLogger::print(char *prefix, char *msg)
+DebugLogger::print(const char *prefix, char *msg)
 {
-    char buffer[MAX_LINE_LEN];
-    snprintf(buffer, MAX_LINE_LEN, "%s\t%s\t%s\n", prefix, this -> name, msg);
-    Serial.print(buffer);
+    char line[MAX_LINE_LEN];
+    time_t rawtime;
+    struct tm timeinfo;
+    if(!getLocalTime(&timeinfo)) return;
+    char timeString[64];
+    strftime(timeString, sizeof(timeString), "%A, %B %d %Y %H:%M:%S", &timeinfo);
+    snprintf(line, MAX_LINE_LEN, "[%s]\t%s\t%s\t%s\n", timeString, prefix, this -> name, msg);
+    Serial.print(line);
+    fw.append(this -> logPath, line);
 }
