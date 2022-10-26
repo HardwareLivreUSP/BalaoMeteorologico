@@ -23,6 +23,7 @@ class DebugLogger {
     DebugLogger(char *name);
 
     void info(char *msg);
+    void debug(char *msg);
     void warning(char *msg);
     void error(char *msg);
 };

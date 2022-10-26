@@ -6,21 +6,21 @@
 #include <Radio.h>
 #include "template.h"
 
-static DebugLogger debug(MODULE_NAME);
-static DataLogger data(MODULE_NAME);
+static DebugLogger dbglog(MODULE_NAME);
+static DataLogger  dtlog(MODULE_NAME);
 static Radio r();
 
 void 
-templateSetup(void *pvParameters)  
+templateSetup(void *parameters)  
 {
-    debug.info("templateSetup");
+    dbglog.info("templateSetup");
     while (true) templateLoop();
 }
 
 void
 templateLoop()
 {
-    debug.info("templateLoop");
+    dbglog.info("templateLoop");
     vTaskDelay(500 / portTICK_PERIOD_MS);
 }
 

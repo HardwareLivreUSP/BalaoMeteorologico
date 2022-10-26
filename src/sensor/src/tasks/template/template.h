@@ -1,4 +1,4 @@
 #define MODULE_NAME "template"
 
-void templateSetup(void *pvParameters);
+void templateSetup(void *parameters);
 void templateLoop();
